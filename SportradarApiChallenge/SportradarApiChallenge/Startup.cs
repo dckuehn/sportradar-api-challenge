@@ -6,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using SportradarApiChallenge.Clients;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,6 +27,14 @@ namespace SportradarApiChallenge
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+
+            services.AddHttpClient<NhlApiClient>(c =>
+            {
+                c.BaseAddress = new Uri("https://statsapi.web.nhl.com");
+                c.DefaultRequestHeaders.Add("Accept", "application/json");
+                c.DefaultRequestHeaders.Add("User-Agent", "SportradarApiChallenge");
+            });
+
             services.AddSwaggerGen();
         }
 
