@@ -7,6 +7,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using SportradarApiChallenge.Clients;
+using SportradarApiChallenge.Services;
+using SportradarApiChallenge.Services.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,6 +29,8 @@ namespace SportradarApiChallenge
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+
+            services.AddScoped<ITeamService, TeamService>();
 
             services.AddHttpClient<NhlApiClient>(c =>
             {
