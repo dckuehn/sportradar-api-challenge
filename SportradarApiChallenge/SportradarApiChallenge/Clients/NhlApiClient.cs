@@ -1,8 +1,7 @@
-﻿using SportradarApiChallenge.Models;
+﻿using SportradarApiChallenge.Models.Extract;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Text.Json;
-using System.Text.Json.Serialization;
 
 namespace SportradarApiChallenge.Clients
 {
@@ -16,13 +15,15 @@ namespace SportradarApiChallenge.Clients
         }
 
         //Teams
-        public void GetTeams()
+        public List<Team> GetTeams()
         {
-            var result = _httpClient.GetAsync("/api/v1/teams");
+            var result = _httpClient.GetAsync("/api/v1/teams/30");
 
             string teamJson = result.Result.Content.ReadAsStringAsync().Result;
 
-            List<Team> teams = JsonSerializer.Deserialize<List<Team>>(teamJson);
+            RootTeamResponse teams = JsonSerializer.Deserialize<RootTeamResponse>(teamJson);
+
+            return teams.teams;
         }
     }
 }
