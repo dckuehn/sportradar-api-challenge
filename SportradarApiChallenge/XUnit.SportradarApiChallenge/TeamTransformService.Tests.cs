@@ -96,20 +96,50 @@ namespace XUnit.SportradarApiChallenge
         }
 
 
-
         [Fact]
-        public void GetPointsPerGame_ShouldReturn_OnePointTwoSixPPG()
+        public void GetRegularSeasonGoalsPerGame_ShouldReturn_OnePointTwoSixPPG()
         {
             // Arrange
             var rootScheduleObject = JsonSerializer.Deserialize<RootScheduleResponse>(SampleApiResponses.SampleScheduleResponses.MinnesotaWild_20172018);
-            double Wild2017PointsPerGame = 1.23;
-            int teamId = 30;
+            int wildTeamId = 30;
+            int Wild2017TotalGoalsFor = 253;
+            int Wild2017TotalGamesPlayed = 82;
+
+            double Wild2017GoalsPerGame = (double) Wild2017TotalGoalsFor / (double) Wild2017TotalGamesPlayed;
 
             // Act
-            double pointsPerGame = teamTransformService.GetPointsPerGame(teamId, rootScheduleObject.dates);
+            double pointsPerGame = teamTransformService.GetPointsPerGame(wildTeamId, rootScheduleObject.dates, "R");
 
             // Assert
-            Assert.Equal(Wild2017PointsPerGame, pointsPerGame);
+            Assert.Equal(Wild2017GoalsPerGame, pointsPerGame);
+        }
+
+        [Fact]
+        public void GetRegularSeasonFirstOpponent_ShouldReturn_DetroidRedWings()
+        {
+            // Arrange
+            var rootScheduleObject = JsonSerializer.Deserialize<RootScheduleResponse>(SampleApiResponses.SampleScheduleResponses.MinnesotaWild_20172018);
+            int wildTeamId = 30;
+
+                // Act
+            string firstRegularseasonOpponent = teamTransformService.GetFirstOpponentOfSeason(wildTeamId, rootScheduleObject.dates, "R");
+
+            // Assert
+            Assert.Equal("Detroit Red Wings", firstRegularseasonOpponent);
+        }
+
+        [Fact]
+        public void GetPreSeasonFirstOpponent_ShouldReturn_WinnipegJets()
+        {
+            // Arrange
+            var rootScheduleObject = JsonSerializer.Deserialize<RootScheduleResponse>(SampleApiResponses.SampleScheduleResponses.MinnesotaWild_20172018);
+            int wildTeamId = 30;
+
+            // Act
+            string firstRegularseasonOpponent = teamTransformService.GetFirstOpponentOfSeason(wildTeamId, rootScheduleObject.dates, "PR");
+
+            // Assert
+            Assert.Equal("Winnipeg Jets", firstRegularseasonOpponent);
         }
     }
 }
