@@ -12,7 +12,7 @@ namespace SportradarApiChallenge.Services._2.Transform
             throw new NotImplementedException();
         }
 
-        public int GetWins(int teamId, List<Date> dates)
+        public int GetWins(int teamId, List<Date> dates, string gameTypes = "PR,R,P,A,WA,O,WCOH_EXH,WCOH_PRELIM,WCOH_FINAL")
         {
             throw new NotImplementedException();
         }

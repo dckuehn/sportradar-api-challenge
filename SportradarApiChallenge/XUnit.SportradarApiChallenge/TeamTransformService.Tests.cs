@@ -26,6 +26,48 @@ namespace XUnit.SportradarApiChallenge
         }
 
         [Fact]
+        public void GetPreSeasonWins_ShouldReturn_FourtyFiveWins()
+        {
+            // Arrange
+            var rootScheduleObject = JsonSerializer.Deserialize<RootScheduleResponse>(SampleApiResponses.SampleScheduleResponses.MinnesotaWild_20172018);
+            int teamId = 30;
+
+            // Act
+            int wins = teamTransformService.GetWins(teamId, rootScheduleObject.dates, "PR");
+
+            // Assert
+            Assert.Equal(5, wins);
+        }
+
+        [Fact]
+        public void GetRegularSeasonWins_ShouldReturn_FourtyFiveWins()
+        {
+            // Arrange
+            var rootScheduleObject = JsonSerializer.Deserialize<RootScheduleResponse>(SampleApiResponses.SampleScheduleResponses.MinnesotaWild_20172018);
+            int teamId = 30;
+
+            // Act
+            int wins = teamTransformService.GetWins(teamId, rootScheduleObject.dates, "R");
+
+            // Assert
+            Assert.Equal(45, wins);
+        }
+
+        [Fact]
+        public void GetPostSeasonWins_ShouldReturn_FourtyFiveWins()
+        {
+            // Arrange
+            var rootScheduleObject = JsonSerializer.Deserialize<RootScheduleResponse>(SampleApiResponses.SampleScheduleResponses.MinnesotaWild_20172018);
+            int teamId = 30;
+
+            // Act
+            int wins = teamTransformService.GetWins(teamId, rootScheduleObject.dates, "P");
+
+            // Assert
+            Assert.Equal(1, wins);
+        }
+
+        [Fact]
         public void GetWins_ShouldReturn_FourtyFiveWins()
         {
             // Arrange
@@ -33,10 +75,10 @@ namespace XUnit.SportradarApiChallenge
             int teamId = 30;
 
             // Act
-            int wins = teamTransformService.GetWins(teamId, rootScheduleObject.dates);
+            int wins = teamTransformService.GetWins(teamId, rootScheduleObject.dates, "PR,R,P");
 
             // Assert
-            Assert.Equal(45, wins);
+            Assert.Equal(51, wins);
         }
 
         [Fact]
