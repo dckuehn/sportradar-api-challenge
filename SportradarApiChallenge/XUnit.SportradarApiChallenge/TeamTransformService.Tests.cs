@@ -111,7 +111,7 @@ namespace XUnit.SportradarApiChallenge
         }
 
         [Fact]
-        public void GetLosses_ShouldReturn_TwentySixLosses()
+        public void GetRegularSeasonLosses_ShouldReturn_TwentySixLosses()
         {
             // Arrange
             var rootScheduleObject = JsonSerializer.Deserialize<RootScheduleResponse>(SampleApiResponses.SampleScheduleResponses.MinnesotaWild_20172018);
