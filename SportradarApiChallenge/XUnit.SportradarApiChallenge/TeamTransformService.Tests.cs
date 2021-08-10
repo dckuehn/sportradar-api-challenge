@@ -26,6 +26,35 @@ namespace XUnit.SportradarApiChallenge
         }
 
         [Fact]
+        public void GetPreSeasonGames_ShouldReturn_Seven()
+        {
+            // Arrange
+            var rootScheduleObject = JsonSerializer.Deserialize<RootScheduleResponse>(SampleApiResponses.SampleScheduleResponses.MinnesotaWild_20172018);
+            int teamId = 30;
+
+            // Act
+            int games = teamTransformService.GetGames(teamId, rootScheduleObject.dates, "PR");
+
+            // Assert
+            Assert.Equal(7, games);
+        }
+
+        [Fact]
+        public void GetTotalGames_ShouldReturn_NinetyFour()
+        {
+            // Arrange
+            var rootScheduleObject = JsonSerializer.Deserialize<RootScheduleResponse>(SampleApiResponses.SampleScheduleResponses.MinnesotaWild_20172018);
+            int teamId = 30;
+
+            // Act
+            int games = teamTransformService.GetGames(teamId, rootScheduleObject.dates);
+
+            // Assert
+            Assert.Equal(94, games);
+        }
+
+
+        [Fact]
         public void GetPreSeasonWins_ShouldReturn_FourtyFiveWins()
         {
             // Arrange

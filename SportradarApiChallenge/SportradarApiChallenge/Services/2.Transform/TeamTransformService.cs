@@ -11,6 +11,31 @@ namespace SportradarApiChallenge.Services._2.Transform
         public TeamPipelineModel TransformTeamResult(Team team, List<Date> dates)
         {
             throw new NotImplementedException();
+
+        public int GetGames(int teamId, List<Date> dates, string gameTypes = "PR,R,P,A,WA,O,WCOH_EXH,WCOH_PRELIM,WCOH_FINAL")
+        {
+            List<string> gameTypeList = gameTypes.Split(",").ToList();
+            int gameCount = 0;
+
+            dates.ForEach(d =>
+            {
+                d.games.ForEach(g =>
+                {
+                    if (gameTypeList.Contains(g.gameType))
+                    {
+                        if (g.teams.home.team.id == teamId)
+                        {
+                            gameCount += 1;
+                        }
+                        else if (g.teams.away.team.id == teamId)
+                        {
+                            gameCount += 1;
+                        }
+                    }
+                });
+            });
+
+            return gameCount;
         }
 
         public int GetWins(int teamId, List<Date> dates, string gameTypes = "PR,R,P,A,WA,O,WCOH_EXH,WCOH_PRELIM,WCOH_FINAL")
