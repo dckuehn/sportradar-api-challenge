@@ -6,7 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using SportradarApiChallenge.Clients;
+using SportradarApiChallenge.Services._1.Extract;
 using SportradarApiChallenge.Services;
 using SportradarApiChallenge.Services.Interfaces;
 using System;

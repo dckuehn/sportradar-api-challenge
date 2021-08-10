@@ -1,4 +1,6 @@
-﻿using SportradarApiChallenge.Clients;
+﻿using SportradarApiChallenge.Models.Extract;
+using SportradarApiChallenge.Services._1.Extract;
+using SportradarApiChallenge.Services._2.Transform;
 using SportradarApiChallenge.Services.Interfaces;
 
 namespace SportradarApiChallenge.Services
