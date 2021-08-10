@@ -89,7 +89,7 @@ namespace XUnit.SportradarApiChallenge
             int teamId = 30;
 
             // Act
-            int losses = teamTransformService.GetLosses(teamId, rootScheduleObject.dates);
+            int losses = teamTransformService.GetLosses(teamId, rootScheduleObject.dates, "R");
 
             // Assert
             Assert.Equal(26, losses);
