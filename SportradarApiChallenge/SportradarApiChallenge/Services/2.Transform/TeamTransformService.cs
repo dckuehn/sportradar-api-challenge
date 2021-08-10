@@ -11,5 +11,30 @@ namespace SportradarApiChallenge.Services._2.Transform
         {
             throw new NotImplementedException();
         }
+
+        public int GetWins(List<Date> dates)
+        {
+            throw new NotImplementedException();
+        }
+
+        public int GetLosses(List<Date> dates)
+        {
+            throw new NotImplementedException();
+        }
+
+        public double GetPointsPerGame(List<Date> dates)
+        {
+            throw new NotImplementedException();
+        }
+
+        public string GetFirstOpponentOfSeason(List<Date> dates)
+        {
+            throw new NotImplementedException();
+        }
+
+        public DateTime GetFirstGameOfSeason(List<Date> dates)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
