@@ -95,6 +95,8 @@ namespace XUnit.SportradarApiChallenge
             Assert.Equal(26, losses);
         }
 
+
+
         [Fact]
         public void GetPointsPerGame_ShouldReturn_OnePointTwoSixPPG()
         {
