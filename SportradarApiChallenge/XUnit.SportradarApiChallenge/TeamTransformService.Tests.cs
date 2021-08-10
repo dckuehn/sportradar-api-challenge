@@ -30,9 +30,10 @@ namespace XUnit.SportradarApiChallenge
         {
             // Arrange
             var rootScheduleObject = JsonSerializer.Deserialize<RootScheduleResponse>(SampleApiResponses.SampleScheduleResponses.MinnesotaWild_20172018);
+            int teamId = 30;
 
             // Act
-            int wins = teamTransformService.GetWins(rootScheduleObject.dates);
+            int wins = teamTransformService.GetWins(teamId, rootScheduleObject.dates);
 
             // Assert
             Assert.Equal(45, wins);
@@ -43,9 +44,10 @@ namespace XUnit.SportradarApiChallenge
         {
             // Arrange
             var rootScheduleObject = JsonSerializer.Deserialize<RootScheduleResponse>(SampleApiResponses.SampleScheduleResponses.MinnesotaWild_20172018);
+            int teamId = 30;
 
             // Act
-            int losses = teamTransformService.GetLosses(rootScheduleObject.dates);
+            int losses = teamTransformService.GetLosses(teamId, rootScheduleObject.dates);
 
             // Assert
             Assert.Equal(26, losses);
@@ -57,9 +59,10 @@ namespace XUnit.SportradarApiChallenge
             // Arrange
             var rootScheduleObject = JsonSerializer.Deserialize<RootScheduleResponse>(SampleApiResponses.SampleScheduleResponses.MinnesotaWild_20172018);
             double Wild2017PointsPerGame = 1.23;
+            int teamId = 30;
 
             // Act
-            double pointsPerGame = teamTransformService.GetPointsPerGame(rootScheduleObject.dates);
+            double pointsPerGame = teamTransformService.GetPointsPerGame(teamId, rootScheduleObject.dates);
 
             // Assert
             Assert.Equal(Wild2017PointsPerGame, pointsPerGame);
