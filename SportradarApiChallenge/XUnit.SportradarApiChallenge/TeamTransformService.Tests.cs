@@ -139,7 +139,35 @@ namespace XUnit.SportradarApiChallenge
             string firstRegularseasonOpponent = teamTransformService.GetFirstOpponentOfSeason(wildTeamId, rootScheduleObject.dates, "PR");
 
             // Assert
-            Assert.Equal("Winnipeg Jets", firstRegularseasonOpponent);
+            Assert.Equal("Winnipeg Jets", firstRegularseasonOpponent); //2017-09-18
+        }
+
+        [Fact]
+        public void GetPreSeasonFirstGameDate_ShouldReturn_20170918()
+        {
+            // Arrange
+            var rootScheduleObject = JsonSerializer.Deserialize<RootScheduleResponse>(SampleApiResponses.SampleScheduleResponses.MinnesotaWild_20172018);
+            int wildTeamId = 30;
+
+            // Act
+            string firstGameDate = teamTransformService.GetFirstGameOfSeason(wildTeamId, rootScheduleObject.dates, "PR");
+
+            // Assert
+            Assert.Equal("2017-09-18", firstGameDate);
+        }
+
+        [Fact]
+        public void GetPreSeasonFirstGameDate_ShouldReturn_20171005()
+        {
+            // Arrange
+            var rootScheduleObject = JsonSerializer.Deserialize<RootScheduleResponse>(SampleApiResponses.SampleScheduleResponses.MinnesotaWild_20172018);
+            int wildTeamId = 30;
+
+            // Act
+            string firstGameDate = teamTransformService.GetFirstGameOfSeason(wildTeamId, rootScheduleObject.dates, "R");
+
+            // Assert
+            Assert.Equal("2017-10-05", firstGameDate);
         }
     }
 }

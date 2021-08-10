@@ -137,9 +137,28 @@ namespace SportradarApiChallenge.Services._2.Transform
             return "";
         }
 
-        public DateTime GetFirstGameOfSeason(int teamId, List<Date> dates)
+        public string GetFirstGameOfSeason(int teamId, List<Date> dates, string gameTypes = "PR,R,P,A,WA,O,WCOH_EXH,WCOH_PRELIM,WCOH_FINAL")
         {
-            throw new NotImplementedException();
+            List<string> gameTypeList = gameTypes.Split(",").ToList();
+
+            dates = dates.OrderBy(d => DateTime.Parse(d.date)).ToList();
+
+            foreach (Date d in dates)
+            {
+                foreach (Game g in d.games)
+                {
+                    if (gameTypeList.Contains(g.gameType))
+                    {
+                        if (g.teams.away.team.id == teamId || g.teams.home.team.id == teamId)
+                        {
+                            return d.date;
+                        }
+                    }
+                }
+            }
+
+            // Game of provided types not found within provided range
+            return "";
         }
     }
 }
