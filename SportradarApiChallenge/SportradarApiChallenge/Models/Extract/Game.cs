@@ -13,7 +13,7 @@ namespace SportradarApiChallenge.Models.Extract
         public string season { get; set; }
         public DateTime gameDate { get; set; }
         public Status status { get; set; }
-        public List<GameTeams> teams { get; set; }
+        public GameTeams teams { get; set; }
         public Venue venue { get; set; }
         public Content content { get; set; }
 
