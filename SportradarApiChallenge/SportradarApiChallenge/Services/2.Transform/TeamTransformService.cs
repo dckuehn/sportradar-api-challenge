@@ -10,7 +10,20 @@ namespace SportradarApiChallenge.Services._2.Transform
     {
         public TeamPipelineModel TransformTeamResult(Team team, List<Date> dates)
         {
-            throw new NotImplementedException();
+            TeamPipelineModel teamPipeline = new TeamPipelineModel();
+
+            teamPipeline.TeamID = team.id;
+            teamPipeline.TeamName = team.name;
+            teamPipeline.TeamVenueName = team.venue.name;
+            teamPipeline.GamesPlayed = GetGames(team.id, dates);
+            teamPipeline.Wins = GetWins(team.id, dates);
+            teamPipeline.Losses = GetLosses(team.id, dates);
+            teamPipeline.GoalsPerGame = GetPointsPerGame(team.id, dates);
+            teamPipeline.FirstGameDate = GetFirstGameOfSeason(team.id, dates);
+            teamPipeline.FirstGameOpponentTeamName = GetFirstOpponentOfSeason(team.id, dates);
+
+            return teamPipeline;
+        }
 
         public int GetGames(int teamId, List<Date> dates, string gameTypes = "PR,R,P,A,WA,O,WCOH_EXH,WCOH_PRELIM,WCOH_FINAL")
         {

@@ -12,8 +12,8 @@ namespace SportradarApiChallenge.Models.Transform
         public int Wins { get; set; }
         public int Losses { get; set; }
         public int Points { get; set; }
-        public float GoalsPerGame { get; set; }
-        public DateTime FirstGameDate { get; set; }
+        public double GoalsPerGame { get; set; }
+        public string FirstGameDate { get; set; }
         public string FirstGameOpponentTeamName { get; set; }
 
     }
