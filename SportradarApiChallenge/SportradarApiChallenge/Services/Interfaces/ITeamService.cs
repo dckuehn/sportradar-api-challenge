@@ -1,7 +1,9 @@
-﻿namespace SportradarApiChallenge.Services.Interfaces
+﻿using System.Collections.Generic;
+
+namespace SportradarApiChallenge.Services.Interfaces
 {
     public interface ITeamService
     {
-        void SingleTeamSeasonPipeline(int teamId, int year);
+        byte[] SingleTeamSeasonPipeline(int teamId, int year);
     }
 }

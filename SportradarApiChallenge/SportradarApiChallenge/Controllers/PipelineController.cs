@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using SportradarApiChallenge.Services.Interfaces;
+using System.Collections.Generic;
+using System.Net.Http;
 
 namespace SportradarApiChallenge.Controllers
 {
@@ -19,11 +21,11 @@ namespace SportradarApiChallenge.Controllers
 
         [HttpGet]
         [Route("Teams")]
-        public ActionResult GetTeam(int teamId, int seasonYear)
+        public IActionResult GetTeam(int teamId, int seasonYear)
         {
-            _teamService.SingleTeamSeasonPipeline(teamId, seasonYear);
+            byte[] fileBytes = _teamService.SingleTeamSeasonPipeline(teamId, seasonYear);
 
-            return Ok();
+            return File(fileBytes, "text/csv", $"{teamId}_{seasonYear}.csv");
         }
 
         [HttpGet]
