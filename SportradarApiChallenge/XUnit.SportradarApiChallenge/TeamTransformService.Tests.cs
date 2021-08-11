@@ -150,7 +150,7 @@ namespace XUnit.SportradarApiChallenge
             double Wild2017GoalsPerGame = (double) Wild2017TotalGoalsFor / (double) Wild2017TotalGamesPlayed;
 
             // Act
-            double pointsPerGame = teamTransformService.GetPointsPerGame(wildTeamId, rootScheduleObject.dates, "R");
+            double pointsPerGame = teamTransformService.GetGoalsPerGame(wildTeamId, rootScheduleObject.dates, "R");
 
             // Assert
             Assert.Equal(Wild2017GoalsPerGame, pointsPerGame);

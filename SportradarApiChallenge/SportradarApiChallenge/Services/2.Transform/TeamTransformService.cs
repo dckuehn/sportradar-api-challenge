@@ -116,7 +116,7 @@ namespace SportradarApiChallenge.Services._2.Transform
             return lossCount - totalOTLosses;
         }
 
-        public double GetPointsPerGame(int teamId, List<Date> dates, string gameTypes = "PR,R,P,A,WA,O,WCOH_EXH,WCOH_PRELIM,WCOH_FINAL")
+        public double GetGoalsPerGame(int teamId, List<Date> dates, string gameTypes = "PR,R,P,A,WA,O,WCOH_EXH,WCOH_PRELIM,WCOH_FINAL")
         {
             List<string> gameTypeList = gameTypes.Split(",").ToList();
 
