@@ -16,6 +16,7 @@ namespace SportradarApiChallenge.Models.Extract
         public GameTeams teams { get; set; }
         public Venue venue { get; set; }
         public Content content { get; set; }
+        public Linescore linescore { get; set; }
 
     }
 }

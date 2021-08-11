@@ -60,5 +60,23 @@ namespace XUnit.SportradarApiChallenge
             Assert.Equal(30, firstGameObject.teams.away.team.id);
             Assert.Equal(1, firstGameObject.teams.away.leagueRecord.wins);
         }
+
+        [Fact]
+        public void SingleSeason_ShouldSerialize_Periods()
+        {
+            var rootScheduleObject = JsonSerializer.Deserialize<RootScheduleResponse>(SampleApiResponses.ShortScheduleWithOvertime.MinnesotaWildShortScheduleOvertime);
+            Date fourthDateObject = rootScheduleObject.dates[3];
+            Game overtimeGame = fourthDateObject.games.First();
+
+            Linescore overtimeLinescore = overtimeGame.linescore;
+
+            Assert.Equal(true, overtimeLinescore.hasShootout);
+
+            Period firstPeriod = overtimeLinescore.periods.FirstOrDefault();
+
+            Assert.Equal("REGULAR", firstPeriod.periodType);
+            Assert.Equal(4, overtimeLinescore.periods.Count);
+            Assert.Equal("OVERTIME", overtimeLinescore.periods[3].periodType);
+        }
     }
 }
