@@ -6,6 +6,9 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SportradarApiChallenge", "SportradarApiChallenge\SportradarApiChallenge.csproj", "{598F193E-5CFC-400C-ABAD-047CFE99420A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XUnit.SportradarApiChallenge", "XUnit.SportradarApiChallenge\XUnit.SportradarApiChallenge.csproj", "{7A30320F-0F80-4291-A427-83749D771BFD}"
+	ProjectSection(ProjectDependencies) = postProject
+		{598F193E-5CFC-400C-ABAD-047CFE99420A} = {598F193E-5CFC-400C-ABAD-047CFE99420A}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
