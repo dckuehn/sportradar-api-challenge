@@ -31,7 +31,7 @@ namespace SportradarApiChallenge.Services._1.Extract
             //?startDate={startDate}&endDate={endDate}
             string season = year.ToString() + (year + 1).ToString();
 
-            var result = _httpClient.GetAsync($"/api/v1/schedule?teamId={teamId}&?season={season}");
+            var result = _httpClient.GetAsync($"/api/v1/schedule?teamId={teamId}&season={season}");
 
             string scheduleJson = result.Result.Content.ReadAsStringAsync().Result;
 
