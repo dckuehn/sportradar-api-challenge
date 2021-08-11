@@ -146,6 +146,42 @@ namespace SportradarApiChallenge.Services._2.Transform
             return (double) totalGoals / (double) totalGames;
         }
 
+        public int GetTotalPoints(int teamId, List<Date> dates, string gameTypes = "PR,R,P,A,WA,O,WCOH_EXH,WCOH_PRELIM,WCOH_FINAL")
+        {
+            List<string> gameTypeList = gameTypes.Split(",").ToList();
+
+            int totalWins = 0;
+            int startingOvertimeLosses = -1;
+            int finalOvertimeLosses = -1;
+
+            foreach (Date d in dates)
+            {
+                foreach (Game g in d.games)
+                {
+                    if (gameTypeList.Contains(g.gameType))
+                    {
+                        if (g.teams.home.team.id == teamId && g.teams.home.score > g.teams.away.score)
+                        {
+                            totalWins += 1;
+                        }
+                        else if (g.teams.away.team.id == teamId && g.teams.away.score > g.teams.home.score)
+                        {
+                            totalWins += 1;
+                        }
+                        if (startingOvertimeLosses == -1)
+                        {
+                            // Set our starting OT value based on initail LeageRecord.OT value of our teamId record
+                            startingOvertimeLosses = g.teams.home.team.id == teamId ? g.teams.home.leagueRecord.ot : g.teams.away.leagueRecord.ot;
+                        }
+                        // finalOvertimeLosses is reset every game (OT value only increases on actual OT losses so this is ok)
+                        finalOvertimeLosses = g.teams.home.team.id == teamId ? g.teams.home.leagueRecord.ot : g.teams.away.leagueRecord.ot;
+                    }
+                }
+            }
+
+            return totalWins * 2 + (finalOvertimeLosses - startingOvertimeLosses);
+        }
+
         public string GetFirstOpponentOfSeason(int teamId, List<Date> dates, string gameTypes = "PR,R,P,A,WA,O,WCOH_EXH,WCOH_PRELIM,WCOH_FINAL")
         {
             List<string> gameTypeList = gameTypes.Split(",").ToList();

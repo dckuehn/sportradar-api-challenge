@@ -124,6 +124,19 @@ namespace XUnit.SportradarApiChallenge
             Assert.Equal(26, losses);
         }
 
+        [Fact]
+        public void GetRegularSeasonTotalPoints_ShouldReturn_OneHundredOne()
+        {
+            // Arrange
+            var rootScheduleObject = JsonSerializer.Deserialize<RootScheduleResponse>(SampleApiResponses.SampleScheduleResponses.MinnesotaWild_20172018);
+            int wildTeamId = 30;
+
+            // Act
+            int totalPoints = teamTransformService.GetTotalPoints(wildTeamId, rootScheduleObject.dates, "R");
+
+            // Assert
+            Assert.Equal(101, totalPoints);
+        }
 
         [Fact]
         public void GetRegularSeasonGoalsPerGame_ShouldReturn_OnePointTwoSixPPG()
