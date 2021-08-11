@@ -18,7 +18,8 @@ namespace SportradarApiChallenge.Services._2.Transform
             teamPipeline.GamesPlayed = GetGames(team.id, dates);
             teamPipeline.Wins = GetWins(team.id, dates);
             teamPipeline.Losses = GetLosses(team.id, dates);
-            teamPipeline.GoalsPerGame = GetPointsPerGame(team.id, dates);
+            teamPipeline.Points = GetTotalPoints(team.id, dates);
+            teamPipeline.GoalsPerGame = GetGoalsPerGame(team.id, dates);
             teamPipeline.FirstGameDate = GetFirstGameOfSeason(team.id, dates);
             teamPipeline.FirstGameOpponentTeamName = GetFirstOpponentOfSeason(team.id, dates);
 
