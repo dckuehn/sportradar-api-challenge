@@ -16,7 +16,7 @@ namespace XUnit.SportradarApiChallenge
         {
             // Arrange
             var rootTeamObject = JsonSerializer.Deserialize<RootTeamResponse>(SampleApiResponses.SampleTeamResponses.MinnesotaWild);
-            var rootScheduleObject = JsonSerializer.Deserialize<RootScheduleResponse>(SampleApiResponses.SampleScheduleResponses.MinnesotaWild_20172018);
+            var rootScheduleObject = JsonSerializer.Deserialize<RootScheduleResponse>(SampleApiResponses.SampleScheduleWithLinescore.MinnesotaWild_Schedule_With_Linescores);
 
             // Act
             var teamExtractResult = teamTransformService.TransformTeamResult(rootTeamObject.teams[0], rootScheduleObject.dates);
@@ -128,7 +128,7 @@ namespace XUnit.SportradarApiChallenge
         public void GetRegularSeasonTotalPoints_ShouldReturn_OneHundredOne()
         {
             // Arrange
-            var rootScheduleObject = JsonSerializer.Deserialize<RootScheduleResponse>(SampleApiResponses.SampleScheduleResponses.MinnesotaWild_20172018);
+            var rootScheduleObject = JsonSerializer.Deserialize<RootScheduleResponse>(SampleApiResponses.SampleScheduleWithLinescore.MinnesotaWild_Schedule_With_Linescores);
             int wildTeamId = 30;
 
             // Act
@@ -142,7 +142,7 @@ namespace XUnit.SportradarApiChallenge
         public void GetTotalPoints_ShouldReturn_OneHundredOne()
         {
             // Arrange
-            var rootScheduleObject = JsonSerializer.Deserialize<RootScheduleResponse>(SampleApiResponses.SampleScheduleResponses.MinnesotaWild_20172018);
+            var rootScheduleObject = JsonSerializer.Deserialize<RootScheduleResponse>(SampleApiResponses.SampleScheduleWithLinescore.MinnesotaWild_Schedule_With_Linescores);
             int wildTeamId = 30;
 
             // Act
@@ -216,7 +216,7 @@ namespace XUnit.SportradarApiChallenge
         public void GetPreSeasonFirstGameDate_ShouldReturn_20171005()
         {
             // Arrange
-            var rootScheduleObject = JsonSerializer.Deserialize<RootScheduleResponse>(SampleApiResponses.SampleScheduleResponses.MinnesotaWild_20172018);
+            var rootScheduleObject = JsonSerializer.Deserialize<RootScheduleResponse>(SampleApiResponses.SampleScheduleWithLinescore.MinnesotaWild_Schedule_With_Linescores);
             int wildTeamId = 30;
 
             // Act
