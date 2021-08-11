@@ -152,8 +152,7 @@ namespace SportradarApiChallenge.Services._2.Transform
             List<string> gameTypeList = gameTypes.Split(",").ToList();
 
             int totalWins = 0;
-            int startingOvertimeLosses = -1;
-            int finalOvertimeLosses = -1;
+            int overtimeLossCount = 0;
 
             foreach (Date d in dates)
             {
@@ -169,18 +168,15 @@ namespace SportradarApiChallenge.Services._2.Transform
                         {
                             totalWins += 1;
                         }
-                        if (startingOvertimeLosses == -1)
+                        else if (g.linescore.periods.Count >= 4)
                         {
-                            // Set our starting OT value based on initail LeageRecord.OT value of our teamId record
-                            startingOvertimeLosses = g.teams.home.team.id == teamId ? g.teams.home.leagueRecord.ot : g.teams.away.leagueRecord.ot;
+                            overtimeLossCount += 1;
                         }
-                        // finalOvertimeLosses is reset every game (OT value only increases on actual OT losses so this is ok)
-                        finalOvertimeLosses = g.teams.home.team.id == teamId ? g.teams.home.leagueRecord.ot : g.teams.away.leagueRecord.ot;
                     }
                 }
             }
 
-            return totalWins * 2 + (finalOvertimeLosses - startingOvertimeLosses);
+            return totalWins * 2 + overtimeLossCount;
         }
 
         public string GetFirstOpponentOfSeason(int teamId, List<Date> dates, string gameTypes = "PR,R,P,A,WA,O,WCOH_EXH,WCOH_PRELIM,WCOH_FINAL")
